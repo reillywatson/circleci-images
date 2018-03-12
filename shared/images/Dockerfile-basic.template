@@ -69,7 +69,9 @@ RUN DOCKERIZE_URL="https://circle-downloads.s3.amazonaws.com/circleci-images/cac
 RUN groupadd --gid 3434 circleci \
   && useradd --uid 3434 --gid circleci --shell /bin/bash --create-home circleci \
   && echo 'circleci ALL=NOPASSWD: ALL' >> /etc/sudoers.d/50-circleci \
-  && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep
+  && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep \
+  && ln -s /home/circleci /home/ubuntu
+  # symlink these two home dirs for 1.0 -> 2.0 compatibility
 
 # BEGIN IMAGE CUSTOMIZATIONS
 # END IMAGE CUSTOMIZATIONS
