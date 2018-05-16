@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 #  We'll try both for now but after older distros like Ubuntu 16.04 (Xenial), 
 #  and Debian Stretch drop off the tag lists from upstream, we should just 
 #  install `btrfs-progs`.
-RUN apt-get install -y btrfs-tools || apt-get install -y btrfs-progs
+RUN if ! apt-get install -y btrfs-tools; then  apt-get install -y btrfs-progs; fi
 
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
 RUN set -x \
