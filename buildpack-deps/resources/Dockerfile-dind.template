@@ -13,7 +13,7 @@ USER root
 #  install `btrfs-progs`.
 RUN apt-get update && apt-get install -y \
 		iptables \
-		xz-utils &&
+		xz-utils && \
 	if ! apt-get install -y btrfs-tools; then  apt-get install -y btrfs-progs; fi
 
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
